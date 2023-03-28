@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+</head>
+<body>
+    <p>bookdetails works!</p>
+    <div *ngIf="viewMode; else editable">
+        <div *ngIf= "tempbook.bookId">
+          <h4>Book</h4>
+          <div>
+            <label><strong>Name:</strong></label> {{ tempbook.bookName }}
+          </div>
+          <div>
+            <label><strong>Publocation Name:</strong></label>
+            {{ tempbook.publicationName }}
+          </div>
+          <div>
+            <label><strong>Author</strong></label>
+            {{ tempbook.authorName}}
+          </div>
+      
+          <a
+            class="badge badge-warning"
+            routerLink="/books/{{ tempbook.bookId }}"
+          >
+            Edit
+          </a>
+        </div>
+      
+        <div *ngIf="!tempbook">
+          <br />
+          <p>Please click on a Books...</p>
+        </div>
+      </div>
+      
+      <ng-template #editable>
+        <div *ngIf="tempbook.bookId" class="edit-form">
+          <h4>Book</h4>
+          <form>
+            <div class="form-group">
+              <label for="title">Book name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                [(ngModel)]="tempbook.bookName"
+                name="name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="publication">Publication</label>
+              <input
+                type="text"
+                class="form-control"
+                id="publicationb"
+                [(ngModel)]="tempbook.publicationName"
+                name="publiaction"
+              />
+            </div>
+      
+            <div class="form-group">
+              <label><strong>Author</strong></label>
+              {{tempbook.authorName}}
+            </div>
+          </form>
+      
+          <button class="badge badge-danger mr-2" (click)="deleteBook()">
+            Delete
+          </button>
+      
+          <button
+            type="submit"
+            class="badge badge-success mb-2"
+            (click)="updateBook()"
+          >
+            Update
+          </button>
+          <p>{{ message }}</p>
+        </div>
+      
+        <div *ngIf="!tempbook.bookId">
+          <br />
+          <p>Cannot access this Book...</p>
+        </div>
+      </ng-template>
+</body>
+</html>

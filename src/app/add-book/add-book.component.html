@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+</head>
+<body>
+    <div>
+        <div class="submit-form">
+            <div *ngIf="!submitted">
+                <div class="form-group">
+                    <label for="">ID</label>
+                    <input type="number" name="ID" id="ID" required [(ngModel)]="book.bookId">
+                </div>
+                <div class="form-group">
+                    <label for="">BookName</label>
+                    <input type="text" name="name" id="name" required [(ngModel)]="book.bookName">
+                </div>
+                <div class="form-group">
+                    <label for="">Pages</label>
+                    <input type="number" name="page" id="page" required [(ngModel)]="book.noOfPages">
+                </div>
+                <div class="form-group">
+                    <label for="">Publication</label>
+                    <input type="text" name="publication" id="publication" required [(ngModel)]="book.publicationName">
+                </div>
+                <div class="form-group">
+                    <label for="">Author</label>
+                    <input type="text" name="author" id="author" required [(ngModel)]="book.authorName">
+                </div>
+                <button (click)="saveBook()">Submit</button>
+            </div>
+            <div *ngIf="submitted">
+                <h3>Book is Add successfully</h3>
+                <button type="submit" (click)="newBook">Add</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
